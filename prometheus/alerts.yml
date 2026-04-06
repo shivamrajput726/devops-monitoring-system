@@ -1,0 +1,30 @@
+groups:
+  - name: sample-app-alerts
+    rules:
+      - alert: SampleAppDown
+        expr: up{job="sample-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Sample app is down"
+          description: "Prometheus cannot scrape sample-app for more than 1 minute."
+
+      - alert: High5xxRate
+        expr: rate(http_requests_total{job="sample-app",status=~"5.."}[2m]) > 0.2
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High 5xx error rate"
+          description: "sample-app is returning too many 5xx responses."
+
+      - alert: P95LatencyHigh
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job="sample-app"}[5m])) by (le)) > 0.5
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High p95 latency"
+          description: "p95 request latency is above 0.5s for more than 3 minutes."
+
