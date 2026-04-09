@@ -35,6 +35,7 @@ Prometheus scrapes the app metrics, evaluates alerting rules, and forwards alert
 ├─ app/                     # Python sample app + Dockerfile
 ├─ prometheus/              # Prometheus scrape config + alert rules
 ├─ alertmanager/            # Alertmanager config (no external notifications)
+├─ screenshots/             # UI screenshots (Grafana/Prometheus)
 ├─ grafana/
 │  ├─ provisioning/         # Datasource + dashboard providers
 │  └─ dashboards/           # 2 prebuilt dashboards (JSON)
@@ -89,6 +90,22 @@ Tip: hit `/error` repeatedly to trigger the `High5xxRate` alert, and `/slow` to 
   - Dashboards:
     - **Sample App Overview**
     - **Prometheus Overview**
+
+---
+
+## Screenshots
+
+### Grafana dashboard
+
+![Grafana dashboard](screenshots/grafana-dashboard.png)
+
+### Prometheus targets
+
+![Prometheus targets](screenshots/prometheus-targets.png)
+
+### Prometheus query
+
+![Prometheus query](screenshots/prometheus-query.png)
 
 ---
 
